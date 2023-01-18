@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Proiect.ServicePage"
+             Title="ServicePage">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Margin="20">
+        <Entry Placeholder="Enter the Name"
+                Text="{Binding Name}"
+                HeightRequest="100" >
+            <Entry.Behaviors>
+                <toolkit:TextValidationBehavior
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                RegexPattern="^(.*{3})$" />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Placeholder="Enter the Address"
+                Text="{Binding Address}"
+                HeightRequest="100" >
+            <Entry.Behaviors>
+                <toolkit:TextValidationBehavior
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                RegexPattern="^(.*{3})$" />
+            </Entry.Behaviors>
+        </Entry>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+            <Button Text="Show on Map" Grid.Column="2"
+                                        MaximumWidthRequest="200"
+                                        Clicked="OnShowMapButtonClicked"></Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>

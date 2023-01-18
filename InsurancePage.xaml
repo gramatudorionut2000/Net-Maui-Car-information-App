@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Proiect.InsurancePage"
+             Title="InsurancePage">
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Picker x:Name="picker"
+                    SelectedItem="{Binding Type}"
+                    Title="Select the Type">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>RCA</x:String>
+                        <x:String>Casco</x:String>
+                        <x:String>Vignette</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <DatePicker MinimumDate="01/01/2023"
+            Date="{Binding ExpirationDate}" />
+
+            <Button Grid.Row="2" Grid.Column="0" Text="Add to Car details"
+                    MaximumWidthRequest="200"
+                    Clicked="OnAddButtonClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
